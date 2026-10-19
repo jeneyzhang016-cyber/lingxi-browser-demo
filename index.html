@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>灵犀浏览器 · 高保真可交互 Demo（Figma 版）</title>
-<style>
+<html lang="zh-CN" data-page-node-id="DjCgI4465AZDsR3R7Gexhx"><head data-page-node-id="IdLSj3w5U4Wdhj05lxm36c">
+<meta charset="UTF-8" data-page-node-id="A9mv52RTTQGx9aaHUYdgpD">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" data-page-node-id="RTt3OwHAK2HHp5IsEByKw9">
+<title data-page-node-id="rR9gjrZJ7OsSranFnjLhww">灵犀浏览器 · 高保真可交互 Demo（Figma 版）</title>
+<style data-page-node-id="Mv7IbpJXWbVAdiCnedDA9O">
 /* ===================== 设计令牌（取自 Figma） ===================== */
 :root{
   --bg-a:#071429; --bg-b:#10294F; --bg-c:#123A61;
@@ -355,11 +354,6 @@ svg{display:block;}
 .sec{margin-top:16px;}
 .sec h5{margin:0;font-size:calc(28px * var(--ts));font-weight:700;color:var(--ink);line-height:41px;}
 .sec p{margin:6px 0 0;font-size:calc(24px * var(--ts));color:#43566B;line-height:35px;}
-/* 网页阅读增强（设置页开关） */
-#stage.read .sec{margin-top:22px;}
-#stage.read .sec p{line-height:44px;}
-#stage.read .at-lead{line-height:46px;}
-#stage.read .res .snip{line-height:38px;}
 .at-note{font-size:19px;color:#64748B;margin-top:18px;}
 .at-side{width:432px;flex:0 0 auto;margin-top:16px;}
 .notes{background:#F2F6F3;border-radius:20px;padding:28px;height:367px;}
@@ -423,7 +417,8 @@ svg{display:block;}
 .setbar h2{margin:0 0 0 28px;font-size:34px;font-weight:700;color:var(--t1);}
 .setbar .sp{flex:1;}
 .setbar .tm{font-size:26px;font-weight:500;color:var(--t1);}
-.setbody{position:absolute;left:0;top:108px;width:1920px;padding:64px 80px 0;z-index:2;}
+.setbody{position:absolute;left:0;top:108px;bottom:104px;width:1920px;padding:64px 80px 0;z-index:2;
+  display:flex;flex-direction:column;}
 .setsec{margin:0 0 22px;font-size:24px;font-weight:700;color:var(--cyan);letter-spacing:2px;}
 .setlist{
   border:1px solid var(--line2);border-radius:24px;overflow:hidden;
@@ -437,11 +432,11 @@ svg{display:block;}
 .sw::after{content:"";position:absolute;left:5px;top:5px;width:46px;height:46px;border-radius:50%;background:#7A93AE;transition:transform .24s var(--ease),background .24s var(--ease);}
 .sw.on{background:#1E6F92;}
 .sw.on::after{transform:translateX(48px);background:var(--cyan);}
-.seg{display:flex;background:#132E50;border-radius:16px;padding:5px;flex:0 0 auto;}
+.seg{display:flex;background:#0E2744;border:1px solid #24405F;border-radius:16px;padding:5px;flex:0 0 auto;}
 .seg div{padding:0 26px;height:56px;display:grid;place-items:center;font-size:24px;color:var(--t2);border-radius:12px;cursor:pointer;}
 .seg div.on{background:#22547D;color:var(--t1);}
 .srow .arrow{width:28px;height:28px;color:var(--t3);}
-.setver{font-size:20px;color:var(--t3);line-height:32px;margin-top:32px;}
+.setver{font-size:20px;color:var(--t3);line-height:32px;margin-top:auto;padding-top:24px;}
 .setfoot{
   position:absolute;left:80px;right:80px;bottom:40px;z-index:2;
   display:flex;align-items:center;justify-content:space-between;
@@ -461,146 +456,147 @@ svg{display:block;}
 
 [hidden]{display:none!important;}
 </style>
-</head>
-<body>
-<div id="wrap">
-<div id="stage">
+<style id="__dm_no_drag_style__">* { -webkit-user-drag: none !important; }</style><style id="__dm_bindable_badge_style__">[data-sp-bindable="database"]{outline:1px dashed #0088ff;outline-offset:2px;border-radius:4px;}[data-sp-bindable="database"] *{pointer-events:none !important;transition:none !important;animation:none !important;}[data-sp-bindable="database"]{transition:none !important;animation:none !important;}</style></head>
+<body data-page-node-id="K0jX4xN5Y0ARMGz3UOBfH4" style="">
+<div id="wrap" data-page-node-id="YT48ERnuIhGshTEkq0cD3b">
+<div id="stage" style="transform: translate(-50%, -50%) scale(0.477083);" data-page-node-id="OiMZeWwTZte4GnMB11GFU7">
 
   <!-- ===================== 设备状态 ===================== -->
-  <header class="statusbar" id="statusbar">
-    <div class="brand">
-      <span class="g" data-i="globe"></span>
-      <span class="name">灵犀浏览器</span>
-      <span class="sep"></span>
-      <span class="sub">一家人的好奇心</span>
+  <header class="statusbar" id="statusbar" data-page-node-id="7hF9Jm30AgtLHV9eD8EetH">
+    <div class="brand" data-page-node-id="3FRlpWeycgC3JjMkxu4DHf">
+      <span class="g" data-i="globe" data-page-node-id="iiInuiCiSjaLB8W9AjsjZ0"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="UBAH7RQprLnh2JXO8QKQ3b"><circle cx="12" cy="12" r="10" data-page-node-id="OrcNPzssQK5pJrMO4vhWlt"></circle><path d="M2 12h20" data-page-node-id="5xgaaJU8xqCrxI2sRmV1xF"></path><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" data-page-node-id="aMJAYrCKd8DtAexYPqmI5Y"></path></svg></span>
+      <span class="name" data-page-node-id="Az4WjOLMXEQEPBeoSfIkBM">灵犀浏览器</span>
+      <span class="sep" data-page-node-id="eq88qudCkc9C4LJAHjGo1c"></span>
+      <span class="sub" data-page-node-id="8wuDrvJZYpAs76Q4n0htrE">一家人的好奇心</span>
     </div>
-    <div class="nettime">
-      <span class="w" data-i="wifi"></span>
-      <span class="txt">网络已连接</span>
-      <span class="time">10:28</span>
+    <div class="nettime" data-page-node-id="ddnrzWRE2qf7RFGRpINEYS">
+      <span class="w" data-i="wifi" data-page-node-id="GG3NxLI0qcSs4x1IRNJzX1"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="49KF6WgH5hg6LmjhLPiUEW"><path d="M5 12.55a11 11 0 0 1 14.08 0" data-page-node-id="gnYpUlIxJOpOerC1DuY0it"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0" data-page-node-id="UyW1zL7vDulvr2z9RpMdjh"></path><path d="M12 20h.01" data-page-node-id="8SApgL5CuZFngvqEqDHZd4"></path></svg></span>
+      <span class="txt" data-page-node-id="VSZBwVBCL3Nm3ccP89AL1d">网络已连接</span>
+      <span class="time" data-page-node-id="Gu6KOAWyvDG3MQ5caXUoBX">10:28</span>
     </div>
   </header>
 
   <!-- ===================== 搜索框 ===================== -->
-  <div class="searchbar" id="searchbar" data-act="toKb">
-    <span class="s-ico" data-i="search"></span>
-    <div class="s-text" id="sbText"></div>
-    <div class="s-mic" id="micBtn" data-act="toVoice" data-i="mic"></div>
-  </div>
+  
 
   <!-- ===================== 首页 Tab ===================== -->
-  <div class="tabs" id="tabs">
-    <div class="tab" data-act="tabFav"><span data-i="grid"></span>快捷入口</div>
-    <div class="tab" data-act="tabHis"><span data-i="clock"></span>浏览历史</div>
+  <div class="searchbar" id="searchbar" data-act="toKb" data-page-node-id="ZSPngofHqGEy9tFm5vRSuq">
+    <span class="s-ico" data-i="search" data-page-node-id="cOmgoD3Ja7awUwRhomfNDw"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="kU7V7tAutql9JMsPTPL438"><circle cx="11" cy="11" r="8" data-page-node-id="A7FURaGRbOyPCZjgxDvvYh"></circle><path d="m21 21-4.3-4.3" data-page-node-id="3MOdBkh7vvEe9kAsRsjDs5"></path></svg></span>
+    <div class="s-text" id="sbText" data-page-node-id="YciJF7GeE95Xc51iHGmIOm"><span data-page-node-id="9rce4muwflRkkwLv5gcKbT">搜索或输入网址</span></div>
+    <div class="s-mic" id="micBtn" data-act="toVoice" data-i="mic" data-page-node-id="TedR4Tq5PpWVc63iYU9FmA"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="njfIQY2cRkQhxDZTpZs5y6"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" data-page-node-id="YdzLXvcwiJPca5zDtCF7mm"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2" data-page-node-id="pR4787wGQxrBml4SDdOWWX"></path><path d="M12 19v3" data-page-node-id="6COSg0HfYSZ2XoA0qRFqZX"></path></svg></div>
+  </div><div class="tabs" id="tabs" data-page-node-id="0WCVQHSzqmR3DBUqrYrHcK">
+    <div class="tab on" data-act="tabFav" data-page-node-id="0PUWaODGz59ctHsHbWXAgh"><span data-i="grid" data-page-node-id="JdpN08d1MCrnUL88CL33no"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="a8AODklpAzGhQjwHfbeq1Y"><rect x="3" y="3" width="7" height="7" rx="1.4" data-page-node-id="it2wakjMoFfaqXD0nJtiOr"></rect><rect x="14" y="3" width="7" height="7" rx="1.4" data-page-node-id="m5GsHePpUiybUxv4GYMpwA"></rect><rect x="14" y="14" width="7" height="7" rx="1.4" data-page-node-id="NCuJB0ibyZEOtoVhlSBpyJ"></rect><rect x="3" y="14" width="7" height="7" rx="1.4" data-page-node-id="HfZqBNBD7IRYkSAHI24sGu"></rect></svg></span>快捷入口</div>
+    <div class="tab" data-act="tabHis" data-page-node-id="enoV7zDGxvV2FAiDSpNBEs"><span data-i="clock" data-page-node-id="T7j2bf55jkSsEW6DFY1njc"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="zFp1CgHOGQMUsN74qCusbF"><circle cx="12" cy="12" r="10" data-page-node-id="0GK6ilpUJCqsK68HzOaGmE"></circle><path d="M12 6v6l4 2" data-page-node-id="EDTm75pGEBd3ZnAX4Zs2wW"></path></svg></span>浏览历史</div>
   </div>
 
   <!-- ===================== 收藏 ===================== -->
-  <section class="favs" id="favs"></section>
+  <section class="favs" id="favs" data-page-node-id="60yCrflzl7Y14qbRR3OwOs"><div class="head" data-page-node-id="0vOUBIp00XYTFneSavKA08"><div class="l" data-page-node-id="BTjRgQoFzYhwfmo6roNAy7"><h2 data-page-node-id="FsU9ePF3opNxQ0WU98VIzD">我的收藏</h2><span class="slash" data-page-node-id="jqCif7XFSmz0DyIHzsOOZ2">/</span><span class="sub" data-page-node-id="qB5F99iBy9j8dnuvdoX8Ts">常用</span></div><div class="r" data-page-node-id="9sYrhjR6jAO010o0Gs2iAm">常去的网站，一步到达</div></div><div class="grid" data-page-node-id="Z8hm56Yb65lMoFiXoxvqiu"><div class="site on" data-act="openSite" data-idx="0" data-page-node-id="itqpySNeTvKk6aQKlGv2EW"><div class="row1" data-page-node-id="xh0OWCGRht0PNp7lsiE4a4"><div class="badge" style="background:rgba(229,139,172,0.125);color:#E58BAC" data-page-node-id="Gy7j7Q1mJpp510Z7b1rn92">哔</div><div class="meta" data-page-node-id="8RF1N07qI7b7ei39grAwHH"><div class="nm" data-page-node-id="H4QQjUEbxp6BdN8HNkqHTG">哔哩哔哩</div><div class="dm" data-page-node-id="tdHakL4XefxERpIu0UgksM">bilibili.com</div></div></div><div class="row2" data-page-node-id="pi5RqDEuRezEHsgswZXgYU"><span class="use" data-page-node-id="Hc2aKy22VI7fZyFu7l69BA">视频 · 兴趣与知识</span><span class="go" style="color:var(--cyan)" data-page-node-id="JPN4dwoOK8oVbww5ZKY6cj"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="dH7lRA5uZXAMBSpICRWxw4"><path d="M7 17 17 7" data-page-node-id="xsryMiAwWBhy4ei1jrBZYz"></path><path d="M7 7h10v10" data-page-node-id="e5NTnoeuKR5UAE02RVmyGh"></path></svg></span></div></div><div class="site" data-act="openSite" data-idx="1" data-page-node-id="luHhtRc6wXfvoSIKAvjE6K"><div class="row1" data-page-node-id="62l2FKCLENz3QVTXSHe3Ug"><div class="badge" style="background:rgba(179,165,244,0.125);color:#B3A5F4" data-page-node-id="Ot3joJTzjxawA3mzYFEwDx">咪</div><div class="meta" data-page-node-id="iQ0UgLy92OvPCyqDpVpwbY"><div class="nm" data-page-node-id="B0klLMJX3s8aLTIQMAX9qE">移动咪咕</div><div class="dm" data-page-node-id="n4ra5m6P2cunJEASxvkQXI">migu.cn</div></div></div><div class="row2" data-page-node-id="fojb0fGY91x9H0krfh6Plv"><span class="use" data-page-node-id="GeJYaPqXEHYeVLyWtVDxlT">影音 · 赛事与好剧</span><span class="go" style="color:var(--t3)" data-page-node-id="SK01CJtiHmqa5ceWpBRpyE"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="EIlKb95WNnsOJp7UGPBqHz"><path d="m9 18 6-6-6-6" data-page-node-id="HBHuBb7OVIUr3cVWQ7Pvom"></path></svg></span></div></div><div class="site" data-act="openSite" data-idx="2" data-page-node-id="FBlAoOlh4FtEkAmNd5RCLA"><div class="row1" data-page-node-id="MLNIBzJMwxmBMdN6xNBlyB"><div class="badge" style="background:rgba(120,189,246,0.125);color:#78BDF6" data-page-node-id="G1iDuHr1giN1Nb4ww5OfxA">学</div><div class="meta" data-page-node-id="hKGuartVnDXBa6ECzi3aic"><div class="nm" data-page-node-id="LboAlxWD1WCJStswz8nAX3">国家智慧教育平台</div><div class="dm" data-page-node-id="BbLDMZw9rD5sDDC69uuB9p">smartedu.cn</div></div></div><div class="row2" data-page-node-id="RvphuRsLTWLXCtcWwaqWmY"><span class="use" data-page-node-id="NCyaQcB9acgAEB4oqwapB4">教育 · 优质学习资源</span><span class="go" style="color:var(--t3)" data-page-node-id="k1xFzDHJU0UZyBlPsi4vGl"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="VTbQfjyu3FDovmSs5NHAOX"><path d="m9 18 6-6-6-6" data-page-node-id="Jg2webRkkWfUlX19Y4DMT4"></path></svg></span></div></div><div class="site" data-act="openSite" data-idx="3" data-page-node-id="yyB3HQUDSu7pfIAGKHHDZP"><div class="row1" data-page-node-id="iSvBlm1jFBQ6OgRNavfMIK"><div class="badge" style="background:rgba(230,189,123,0.125);color:#E6BD7B" data-page-node-id="DNA84oHEkZ2Wr4v7dewXsx">晴</div><div class="meta" data-page-node-id="HXNxay2CpXyyjifCaQr1Vs"><div class="nm" data-page-node-id="P7WjStjq9DPWmRyBT9sK3Q">中国天气网</div><div class="dm" data-page-node-id="hO6Gh147NFDjosCY9d6dN3">weather.com.cn</div></div></div><div class="row2" data-page-node-id="ZWu0l0Fb0Cr9M2fzGn9DoW"><span class="use" data-page-node-id="oW3VFBDqlBuHwpmTMiKtK7">生活 · 预报与出行</span><span class="go" style="color:var(--t3)" data-page-node-id="3R3CrLSJrAeURIYTGsNgq3"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="QrmFe11W4uVo00Dpe7VfbK"><path d="m9 18 6-6-6-6" data-page-node-id="bES78fu6iASA7rhxtEUzrv"></path></svg></span></div></div><div class="site" data-act="openSite" data-idx="4" data-page-node-id="0X3J2EGtSsYRpnDg7BR1rd"><div class="row1" data-page-node-id="Qkr8dakt9iYkXgDm3EXGeD"><div class="badge" style="background:rgba(125,202,188,0.125);color:#7DCABC" data-page-node-id="lH5npqzScnGHnTsDsjFYUh">政</div><div class="meta" data-page-node-id="lwNDCIGvYzvVkazdac237D"><div class="nm" data-page-node-id="FGkcwcOC6c5ESUjIocD2Tr">国家政务服务平台</div><div class="dm" data-page-node-id="ZN3DYeD2fdtjsp3Cy2RS3Q">gjzwfw.gov.cn</div></div></div><div class="row2" data-page-node-id="AAEYWAQdYdY2vkE5wHkRgS"><span class="use" data-page-node-id="FgpPBNqK4NYd3RMJpsOH2I">政务 · 便民服务</span><span class="go" style="color:var(--t3)" data-page-node-id="dFXa2z6PlqWlKsQ6GHWovk"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="IIBqXDrsAVK1z3jtA6Oqdz"><path d="m9 18 6-6-6-6" data-page-node-id="aGqNZMUsJw1uchNvXGaIke"></path></svg></span></div></div><div class="site" data-act="openSite" data-idx="5" data-page-node-id="3xXEncPnZBFN7TOOaTt0gL"><div class="row1" data-page-node-id="E1EkyrnbH5bHhgkk8HrDkw"><div class="badge" style="background:rgba(147,178,239,0.125);color:#93B2EF" data-page-node-id="ALRTKEEzin0REDAVqxhgHa">新</div><div class="meta" data-page-node-id="4svX48keIuSkjBrcjmY6GD"><div class="nm" data-page-node-id="s9tWUKZnfLuvCGUvxVPTqi">新华网</div><div class="dm" data-page-node-id="xFkMvKgPN6SCC9rpabBdtP">news.cn</div></div></div><div class="row2" data-page-node-id="HuH18USE2DSdxFDBgFGnOM"><span class="use" data-page-node-id="tlGQilHcKQBKLj4Ox2uAtD">资讯 · 了解身边世界</span><span class="go" style="color:var(--t3)" data-page-node-id="mkBFH2Zhx5h3KujdhiQ7nV"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="4moZQZBEDIdQj5WTBh620u"><path d="m9 18 6-6-6-6" data-page-node-id="DOpaFR5ijEUzSEM2bgWncm"></path></svg></span></div></div></div><div class="tip" data-page-node-id="KXqw1Me8mRbEocqAzIOUnT"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="lCIBTUxjSDFE1ftkWkOER2"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" data-page-node-id="gHR98tz2ZGP7ZxpHBl7D7X"></path></svg><span data-page-node-id="8SEGSp6vVQSzSV2rr5aVic">浏览网页时点右上角星标收藏，把喜欢的页面留在这里。</span></div></section>
 
   <!-- ===================== 浏览历史 ===================== -->
-  <section class="history" id="history" hidden></section>
+  <section class="history" id="history" hidden="" data-page-node-id="TG7OqijtL8GyiGsPz823ER"></section>
 
   <!-- ===================== 空状态 ===================== -->
-  <section class="empty" id="empty" hidden></section>
+  <section class="empty" id="empty" hidden="" data-page-node-id="UCxMxgu6clUgI9WAAG8t4s"></section>
 
   <!-- ===================== 键盘 ===================== -->
-  <section class="kb" id="kb" hidden></section>
+  <section class="kb" id="kb" hidden="" data-page-node-id="l9IO6PwYVJM2V3qJjnFW0h"></section>
 
   <!-- ===================== 语音 ===================== -->
-  <section class="voice" id="voice" hidden></section>
+  <section class="voice" id="voice" hidden="" data-page-node-id="qhSUk4OBhqD3dZKIxrA5l4"></section>
 
   <!-- ===================== 网页浏览 ===================== -->
-  <div class="webbar" id="webbar" hidden>
-    <div class="wb-home" data-act="toHome" title="返回主页" data-i="home"></div>
-    <div class="address">
-      <span class="lock" data-i="lock"></span>
-      <span class="url" id="wbUrl"></span>
-      <span class="pct" id="wbPct">0%</span>
-      <span class="div"></span>
-      <span class="refresh" data-act="refresh" id="wbRefresh" data-i="refresh"></span>
+  <div class="webbar" id="webbar" hidden="" data-page-node-id="qUs0FcdHkXfnSDqTrJlwsc">
+    <div class="wb-home" data-act="toHome" title="返回主页" data-i="home" data-page-node-id="BqufoHTlvEDRLVFA0zfyxv"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="FoGzeArmwCsVkjr2cF2Ajd"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" data-page-node-id="vjDG8Yfhl5JC7cdRfkPok2"></path><path d="M9 22V12h6v10" data-page-node-id="WR1vFRYeVFYFxFcKw1XfBb"></path></svg></div>
+    <div class="address" data-page-node-id="xSHy9R0zAcdFUbMg8Rb1uN">
+      <span class="lock" data-i="lock" data-page-node-id="x9g0IokwhHPfep8LPdGneG"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="ceSPVdilFL8A90kQ1KJhg2"><rect x="3" y="11" width="18" height="11" rx="2" data-page-node-id="l3aAmbr8HIZ1yF11HELMwW"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4" data-page-node-id="OeqTryVSAEhBUHOApMSHip"></path></svg></span>
+      <span class="url" id="wbUrl" data-page-node-id="hDj2hv6HYRDPbSw8UBlNP2"></span>
+      <span class="pct" id="wbPct" data-page-node-id="kFXflBDnJtM0HX0Hkdd4hS">0%</span>
+      <span class="div" data-page-node-id="tbvI4rMUvkN0sDZPCjMI30"></span>
+      <span class="refresh" data-act="refresh" id="wbRefresh" data-i="refresh" data-page-node-id="zFoCEWPYfREG7By5mUrMUo"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="ET3v1SlRMSDkKobCZPx3w2"><path d="M21 12a9 9 0 1 1-2.64-6.36" data-page-node-id="xHkwc1dw1Dwbz8Ohc10byo"></path><path d="M21 3v6h-6" data-page-node-id="g2Zkh8ORL1e6kFbgwrlQ1g"></path></svg></span>
     </div>
-    <div class="wb-star" id="wbStar" data-act="toggleStar" title="收藏">
-      <span data-i="star"></span>
+    <div class="wb-star" id="wbStar" data-act="toggleStar" title="收藏" data-page-node-id="TKr1JROp2HbXbYTTQ2a59N">
+      <span data-i="star" data-page-node-id="2thiklg8MRUEwFXGAxxVjT"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="zbH2zsCnSjFUDNZ2IeoTo3"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" data-page-node-id="EycFXbLjAJDRGuCAboc4vw"></path></svg></span>
     </div>
-    <div class="wb-set" id="wbSet" data-act="openSet">
-      <span data-i="gear"></span><span>设置</span>
+    <div class="wb-set" id="wbSet" data-act="openSet" data-page-node-id="XhmvEmqVpDRzYFGLl55h5m">
+      <span data-i="gear" data-page-node-id="k32y6qFAMn9jTMp1F5XGf3"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="jYFQwaJ8l50vv96Rhvzefg"><circle cx="12" cy="12" r="3" data-page-node-id="FZNGp5RI1GCpgLjQTPBSWZ"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6h.09A1.65 1.65 0 0 0 10 3.09V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" data-page-node-id="MfVZfSHbcI9FrQ46bq3R0n"></path></svg></span><span data-page-node-id="Tpljj9NratJzOyyCX1hdFY">设置</span>
     </div>
   </div>
-  <div class="wb-prog" id="wbProg"><i id="wbProgFill"></i></div>
-  <section class="webcard" id="webcard" hidden></section>
+  <div class="wb-prog" id="wbProg" data-page-node-id="vWuudb94oXiHzgkIDMEdRe"><i id="wbProgFill" data-page-node-id="iX9g7dQBJ3qWXtygssWGIS"></i></div>
+  <section class="webcard" id="webcard" hidden="" data-page-node-id="E488kkCxeqdJXQTQFcvJbJ"></section>
 
   <!-- ===================== 遥控提示 ===================== -->
-  <footer class="remote">
-    <span class="l" id="hintL"></span>
-    <span class="r" id="hintR">灵犀屏 / 家庭浏览器</span>
+  <footer class="remote" data-page-node-id="7R7IDKCNjPMXnv4l41sr21">
+    <span class="l" id="hintL" data-page-node-id="YaELM61jAoxYHqfeA4BccW">方向键移动焦点  ·  确认键选择  ·  返回键返回</span>
+    <span class="r" id="hintR" data-page-node-id="wuyzrNMp2JTaJocDCAqNlp">灵犀屏 / 家庭浏览器</span>
   </footer>
 
   <!-- ===================== 清除历史确认 ===================== -->
-  <div class="mask" id="maskClear">
-    <div class="dialog">
-      <div class="di" data-i="trash"></div>
-      <h3>确定要清除浏览历史吗？</h3>
-      <p class="d1">此操作不可恢复。</p>
-      <p class="d2" id="clearNote">将清除本机的 4 条浏览记录，不会删除我的收藏。</p>
-      <div class="acts">
-        <div class="btn btn-solid" data-act="clearCancel">取消</div>
-        <div class="btn btn-plain" data-act="clearOk">清除</div>
+  <div class="mask" id="maskClear" data-page-node-id="HeXDf7b4y8QOoZ0rkORT7p">
+    <div class="dialog" data-page-node-id="fwZ8C5ARaSzwDLmdW9Qos6">
+      <div class="di" data-i="trash" data-page-node-id="Z6x4gVEK92nnBjRbrMwynd"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="SLmkvvXmpfREVarWBpYGBJ"><path d="M3 6h18" data-page-node-id="EBhOdQEsbvciHZnMzoxs18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" data-page-node-id="RAruTcyLcFs5F1ElQ3G3Vz"></path><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" data-page-node-id="4YaBQx8UzrbBnne4aQRHTu"></path><path d="M10 11v6" data-page-node-id="iGdVBNVFaMp6EDpPXQjPF7"></path><path d="M14 11v6" data-page-node-id="UFIfKAJOOtakDOHVhPFUi6"></path></svg></div>
+      <h3 data-page-node-id="F8KVz2udo7Tq89v2cHIgAi">确定要清除浏览历史吗？</h3>
+      <p class="d1" data-page-node-id="EIHFcDeUxO1lsmPmBiq5CC">此操作不可恢复。</p>
+      <p class="d2" id="clearNote" data-page-node-id="3EWwHkIQ96txYBXskQkcDg">将清除本机的 4 条浏览记录，不会删除我的收藏。</p>
+      <div class="acts" data-page-node-id="aBeskjLYpnxLV8MXcFOLnX">
+        <div class="btn btn-solid" data-act="clearCancel" data-page-node-id="mp6IqudPIzkzzNYeNQhAQ7">取消</div>
+        <div class="btn btn-plain" data-act="clearOk" data-page-node-id="d9oIHChxMg3k5HVKx9XReM">清除</div>
       </div>
     </div>
   </div>
 
   <!-- ===================== 设置页 ===================== -->
-  <section class="setpg" id="setpg" hidden>
-    <header class="setbar">
-      <div class="bk" data-act="closeSet" title="返回" data-i="arrowR"></div>
-      <h2>设置</h2>
-      <div class="sp"></div>
-      <span class="tm">10:28</span>
-      <div class="x" data-act="closeSet" title="关闭" data-i="x"></div>
+  <section class="setpg" id="setpg" hidden="" data-page-node-id="YGsPM5sFAKMnIWFugoc0lg">
+    <header class="setbar" data-page-node-id="mWETuG7UVRmY2ntDUkcYzM">
+      <div class="bk" data-act="closeSet" title="返回" data-i="arrowR" data-page-node-id="b427KHJOhm4eAnyPG1OEJv"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="JNoFmR3CPigVwJc3uJMGe8"><path d="M5 12h14" data-page-node-id="XeGCHMWtoiVd3n1bs4Jn9a"></path><path d="m13 6 6 6-6 6" data-page-node-id="XVdq0CQOhmjAz5U2Qin2JT"></path></svg></div>
+      <h2 data-page-node-id="KM6BuneCjiuNyuCGIXXHmi">设置</h2>
+      <div class="sp" data-page-node-id="YNaQegMWKCycfnA5n8ELQE"></div>
+      <span class="tm" data-page-node-id="XAnKuzqhuDzmiC9cmRYzu3">10:28</span>
+      <div class="x" data-act="closeSet" title="关闭" data-i="x" data-page-node-id="uDgDX9gDdw5utfmkIyCWl2"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="C9VqFqqr6rsdqyQLXRFfoX"><path d="M18 6 6 18" data-page-node-id="CiOPZJ3oSasBkzD6pLXCfd"></path><path d="m6 6 12 12" data-page-node-id="mwPxoJM6BzAC301K2gJXWi"></path></svg></div>
     </header>
-    <div class="setbody">
-      <h3 class="setsec">浏览与阅读</h3>
+    <div class="setbody" data-page-node-id="0pBDlcnhbdx9CemcQGkOY4">
+      <h3 class="setsec">显示与阅读</h3>
       <div class="setlist">
         <div class="srow">
-          <div class="lb">阅读字号<small>影响网页正文与列表的显示大小</small></div>
+          <div class="lb">阅读字号<small id="fsNote">影响网页正文与列表的显示大小</small></div>
           <div class="seg" id="segFs">
-            <div data-act="fs0">标准</div><div data-act="fs1">大</div><div data-act="fs2">特大</div>
+            <div data-act="fs0" class="on">标准</div><div data-act="fs1">大</div><div data-act="fs2">特大</div>
           </div>
         </div>
-        <div class="srow">
-          <div class="lb">网页阅读增强<small>正文字号放大、行距加宽，长时间阅读更舒服</small></div>
-          <div class="sw" id="swRead" data-act="toggleRead"></div>
-        </div>
       </div>
-      <h3 class="setsec">历史与数据</h3>
+
+      <h3 class="setsec">浏览数据</h3>
       <div class="setlist">
         <div class="srow">
-          <div class="lb">浏览历史<small>仅保存在当前设备，清空历史不会删除收藏</small></div>
+          <div class="lb">浏览历史<small id="histNote">仅保存在当前设备，清空历史不会删除收藏</small></div>
           <div class="btn btn-ghost" style="height:64px;padding:0 30px;font-size:23px;margin:0" data-act="openClear">清空</div>
         </div>
-        <div class="srow" data-act="toHome" style="cursor:pointer">
-          <div class="lb">返回主页<small>回到快捷入口</small></div>
-          <span class="arrow" data-i="chevronR"></span>
+      </div>
+
+      <h3 class="setsec">家庭守护</h3>
+      <div class="setlist">
+        <div class="srow">
+          <div class="lb">儿童模式<small id="kidNote">开启后仅展示适宜全家浏览的内容</small></div>
+          <div class="sw" id="swKid" data-act="toggleKid"></div>
         </div>
       </div>
-      <div class="setver">
-        灵犀浏览器 v1.0.0 · 家庭浏览器<br>
+      <div class="setver" data-page-node-id="DCzDyj0xwK5YBpk8eCwaVA">
+        灵犀浏览器 v1.0.0 · 家庭浏览器<br data-page-node-id="L65eNNCj6Jhs1UbJsirNhC">
         适配灵犀屏 1920 × 1080
       </div>
     </div>
-    <footer class="setfoot">
-      <span id="setHintL">方向键移动焦点  ·  确认键切换  ·  返回键回到上一页</span>
-      <span id="setfootR">灵犀屏 / 家庭浏览器</span>
+    <footer class="setfoot" data-page-node-id="WtHHvRJg64a1MoMUCDTEKx">
+      <span id="setHintL" data-page-node-id="2nS8SNZN3Wla7vCgLIFgRn">方向键移动焦点  ·  确认键切换  ·  返回键回到上一页</span>
+      <span id="setfootR" data-page-node-id="PYuWhoryaCDY9JINI4tjsy">灵犀屏 / 家庭浏览器</span>
     </footer>
   </section>
 
   <!-- ===================== Toast ===================== -->
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" data-page-node-id="SpZZ01130YYLyNCC1mBa0H"></div>
 
 </div>
 </div>
 
-<script>
+<script data-page-node-id="AYiSruxAzy6Ysb4OR0ahbH">
 /* ===================== 图标 ===================== */
 const ICON={
   globe:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
@@ -665,7 +661,7 @@ const S={
   view:'home', tab:'fav',
   q:'', py:'', mode:'py', sym:false,
   voiceErr:false,
-  page:'results', starred:false, read:false,
+  page:'results', starred:false, kid:false,
   fs:0, setFrom:'web', modal:false,
   hist:HIST.map(g=>({g:g.g,n:g.n,rows:g.rows.slice()})),
   toastTimer:null,
@@ -1037,11 +1033,13 @@ function render(){
 
   $('#maskClear').classList.toggle('show',S.modal);
   $('#wbStar').classList.toggle('on',S.starred);
-  $('#swRead').classList.toggle('on',S.read);
-  stage.classList.toggle('read',S.read);
+  $('#swKid').classList.toggle('on',S.kid);
   document.querySelectorAll('#segFs div').forEach((d,i)=>d.classList.toggle('on',i===S.fs));
   const total=S.hist.reduce((a,g)=>a+g.rows.length,0);
   $('#clearNote').textContent='将清除本机的 '+total+' 条浏览记录，不会删除我的收藏。';
+  $('#histNote').textContent = total? ('本机共 '+total+' 条记录，清空不会删除收藏') : '暂无浏览记录，仅保存在当前设备';
+  $('#fsNote').textContent = ['正文与列表按标准字号显示','正文与列表已放大一档','正文与列表已放大到最大'][S.fs];
+  $('#kidNote').textContent = S.kid? '已开启 · 仅展示适宜全家浏览的内容' : '开启后仅展示适宜全家浏览的内容';
   if(isWeb && S.load.on) $('#hintL').textContent='页面加载中 '+S.load.pct+'%  ·  请稍候';
   paintIcons();
 }
@@ -1088,7 +1086,7 @@ const ACT={
     S.starred=!S.starred; render();
     toast(S.starred?'已收藏到「我的收藏」':'已取消收藏');
   },
-  toggleRead(){ S.read=!S.read; render(); toast(S.read?'已开启阅读增强':'已关闭阅读增强'); },
+  toggleKid(){ S.kid=!S.kid; render(); toast(S.kid?'已开启儿童模式':'已关闭儿童模式'); },
   fs0(){ S.fs=0; render(); }, fs1(){ S.fs=1; render(); }, fs2(){ S.fs=2; render(); },
   openClear(){ S.modal=true; render(); },
   clearCancel(){ S.modal=false; render(); },
@@ -1140,7 +1138,7 @@ function readHash(){
   if(p.get('modal')==='clear'){ S.modal=true; }
   if(p.get('fs')) S.fs=+p.get('fs');
   if(p.get('star')==='1') S.starred=true;
-  if(p.get('read')==='0') S.read=false;
+  if(p.get('kid')==='1') S.kid=true;
 }
 readHash();
 
@@ -1157,5 +1155,6 @@ if(S.view==='web') startLoad(); else render();
 fit();
 document.title='灵犀浏览器 · 高保真可交互 Demo（Figma 版）';
 </script>
-</body>
-</html>
+
+
+</body></html>

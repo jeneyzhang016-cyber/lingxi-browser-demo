@@ -285,6 +285,22 @@ svg{display:block;}
 /* —— 搜索结果页 —— */
 .webcard.at{padding:30px 72px 36px;}
 .webcard::-webkit-scrollbar{display:none;}
+
+/* —— 加载进度与骨架屏 —— */
+.wb-prog{position:absolute;left:72px;top:127px;width:1776px;height:6px;border-radius:3px;
+  background:rgba(101,223,255,.16);overflow:hidden;z-index:14;
+  opacity:0;transition:opacity .24s var(--ease);pointer-events:none;}
+.wb-prog.on{opacity:1;}
+.wb-prog i{display:block;height:100%;width:0;border-radius:3px;
+  background:linear-gradient(90deg,#3FA9E0,#8CEBFF);box-shadow:0 0 16px rgba(101,223,255,.5);}
+.address .pct{font-size:22px;color:var(--cyan);margin-left:14px;flex:0 0 auto;display:none;letter-spacing:.5px;}
+.address .pct.on{display:block;}
+.sk-b{border-radius:9px;background:linear-gradient(90deg,#EDF2F8 25%,#DDE6F0 37%,#EDF2F8 63%);
+  background-size:400% 100%;animation:skmove 1.25s ease-in-out infinite;flex:0 0 auto;}
+@keyframes skmove{0%{background-position:100% 50%}100%{background-position:0 50%}}
+.sk-row{display:flex;align-items:center;}
+.sk-line{height:1px;background:#E5EAF1;}
+
 .sr-top{height:66px;display:flex;align-items:center;}
 .sr-logo{font-size:38px;font-weight:700;color:#315CC9;letter-spacing:0;width:76px;flex:0 0 auto;white-space:nowrap;}
 .sr-input{width:1000px;height:64px;border-radius:12px;border:1px solid #8099D7;margin-left:30px;display:flex;align-items:center;padding:0 0 0 22px;position:relative;}
@@ -499,6 +515,7 @@ svg{display:block;}
     <div class="address">
       <span class="lock" data-i="lock"></span>
       <span class="url" id="wbUrl"></span>
+      <span class="pct" id="wbPct">0%</span>
       <span class="div"></span>
       <span class="refresh" data-act="refresh" id="wbRefresh" data-i="refresh"></span>
     </div>
@@ -509,6 +526,7 @@ svg{display:block;}
       <span data-i="gear"></span><span>设置</span>
     </div>
   </div>
+  <div class="wb-prog" id="wbProg"><i id="wbProgFill"></i></div>
   <section class="webcard" id="webcard" hidden></section>
 
   <!-- ===================== 遥控提示 ===================== -->
@@ -651,6 +669,7 @@ const S={
   fs:0, setFrom:'web', modal:false,
   hist:HIST.map(g=>({g:g.g,n:g.n,rows:g.rows.slice()})),
   toastTimer:null,
+  load:{on:false,pct:0}, loadTimer:null,
 };
 const FS=[1,1.12,1.24];
 
@@ -823,8 +842,87 @@ function renderWeb(){
   $('#wbSet').classList.toggle('on',S.view==='settings');
   const card=$('#webcard');
   card.classList.toggle('at',S.page==='article');
-  if(S.page==='article') card.innerHTML=articleHTML(); else card.innerHTML=resultsHTML();
+  if(S.load.on) card.innerHTML=loadingHTML();
+  else if(S.page==='article') card.innerHTML=articleHTML();
+  else card.innerHTML=resultsHTML();
   stage.style.setProperty('--ts',FS[S.fs]);
+  paintLoad();
+}
+
+/* —— 加载进度 —— */
+function paintLoad(){
+  const on = S.load.on || S.load.pct>0;
+  $('#wbProg').classList.toggle('on',on);
+  $('#wbProgFill').style.width = S.load.pct+'%';
+  const p=$('#wbPct');
+  p.textContent = S.load.pct+'%';
+  p.classList.toggle('on',S.load.on);
+  $('#wbRefresh').classList.toggle('spin',S.load.on);
+  if(S.load.on && S.view==='web') $('#hintL').textContent='页面加载中 '+S.load.pct+'%  ·  请稍候';
+}
+function startLoad(){
+  clearInterval(S.loadTimer);
+  S.load.on=true; S.load.pct=0;
+  const card=$('#webcard'); if(card) card.scrollTop=0;
+  render();
+  const t0=performance.now(), DUR=1400;
+  S.loadTimer=setInterval(()=>{
+    const r=Math.min(1,(performance.now()-t0)/DUR);
+    S.load.pct = Math.round(100*(1-Math.pow(1-r,1.7)));
+    if(r>=1){
+      clearInterval(S.loadTimer);
+      S.load.on=false; S.load.pct=100;
+      render(); paintLoad();
+      setTimeout(()=>{ S.load.pct=0; paintLoad(); },260);
+      return;
+    }
+    paintLoad();
+  },40);
+}
+function stopLoad(){
+  clearInterval(S.loadTimer);
+  S.load.on=false; S.load.pct=0;
+  paintLoad();
+}
+
+/* —— 骨架屏 —— */
+const B=(w,h,m)=>'<div class="sk-b" style="width:'+w+'px;height:'+h+'px'+(m?';margin-top:'+m+'px':'')+'"></div>';
+function loadingHTML(){
+  if(S.page==='article'){
+    let secs='';
+    for(let i=0;i<3;i++){
+      secs+='<div style="margin-top:34px">'+B(300,28)+
+        B(880,24,16)+B(920,24,12)+B(760,24,12)+'</div>';
+    }
+    return '<div class="at-nav"><div class="sk-row" style="gap:14px">'+
+        B(42,42)+B(132,26,0)+B(180,20,0)+'</div></div>'+
+      '<div class="sk-line" style="margin-top:22px"></div>'+
+      '<div class="sk-row" style="margin-top:36px;align-items:flex-start;gap:64px">'+
+        '<div style="flex:1 1 auto">'+
+          B(190,22)+B(660,40,24)+B(430,24,22)+B(900,26,28)+B(920,24,14)+
+          secs+
+        '</div>'+
+        '<div style="width:432px;flex:0 0 auto">'+
+          B(200,28)+
+          '<div style="margin-top:22px">'+B(392,24)+B(368,24,14)+B(380,24,14)+'</div>'+
+        '</div>'+
+      '</div>';
+  }
+  let cards='';
+  for(let i=0;i<3;i++){
+    cards+='<div style="margin-top:'+(i?26:0)+'px">'+
+      '<div class="sk-row">'+B(24,24)+B(150,22,0)+B(120,22,0)+'</div>'+
+      B(620,30,16)+B(900,24,14)+B(820,24,12)+'</div>';
+  }
+  let kws='';
+  for(let i=0;i<5;i++) kws+=B(360,24,i?16:0);
+  return '<div class="sr-top" style="gap:30px">'+B(76,44)+B(1000,64,0)+B(220,24,0)+'</div>'+
+    '<div class="sr-tabs">'+['44px','44px','44px','44px','44px'].map(()=>B(44,26)).join('')+'</div>'+
+    '<div class="sk-line" style="margin-top:18px"></div>'+
+    '<div class="sk-row" style="margin-top:30px;align-items:flex-start;gap:64px">'+
+      '<div style="width:1100px;flex:0 0 auto">'+cards+'</div>'+
+      '<div style="width:432px;flex:0 0 auto">'+B(170,28)+'<div style="margin-top:22px">'+kws+'</div></div>'+
+    '</div>';
 }
 function resultsHTML(){
   return '<div class="sr-top">'+
@@ -944,6 +1042,7 @@ function render(){
   document.querySelectorAll('#segFs div').forEach((d,i)=>d.classList.toggle('on',i===S.fs));
   const total=S.hist.reduce((a,g)=>a+g.rows.length,0);
   $('#clearNote').textContent='将清除本机的 '+total+' 条浏览记录，不会删除我的收藏。';
+  if(isWeb && S.load.on) $('#hintL').textContent='页面加载中 '+S.load.pct+'%  ·  请稍候';
   paintIcons();
 }
 
@@ -954,6 +1053,8 @@ function go(view,opt){
   if(view==='home' && S.tab==='empty' && S.hist.every(g=>!g.rows.length)) S.tab='empty';
   S.py='';
   render();
+  if(view==='web') startLoad();
+  else if(S.load.on || S.load.pct) stopLoad();
 }
 function toast(msg){
   const t=$('#toast');
@@ -980,8 +1081,8 @@ const ACT={
     else { go('web',{page:'results',q:'秋季养生',starred:false}); } },
   openArticle(){ go('web',{page:'article',q:'秋季养生',starred:false}); },
   doSearch(){ if(!S.q.trim()){ S.q='秋季养生'; } go('web',{page:'results',starred:false}); },
-  refresh(){ const r=$('#wbRefresh'); r.classList.add('spin'); setTimeout(()=>r.classList.remove('spin'),520); toast('页面已刷新'); },
-  openSet(){ if(S.view!=='settings') S.setFrom=S.view; S.view='settings'; render(); },
+  refresh(){ startLoad(); toast('页面已重新加载'); },
+  openSet(){ stopLoad(); if(S.view!=='settings') S.setFrom=S.view; S.view='settings'; render(); },
   closeSet(){ S.view=S.setFrom||'web'; render(); },
   toggleStar(){
     S.starred=!S.starred; render();
@@ -1052,7 +1153,7 @@ window.addEventListener('resize',fit);
 
 /* ===================== 起播 ===================== */
 paintIcons();
-render();
+if(S.view==='web') startLoad(); else render();
 fit();
 document.title='灵犀浏览器 · 高保真可交互 Demo（Figma 版）';
 </script>

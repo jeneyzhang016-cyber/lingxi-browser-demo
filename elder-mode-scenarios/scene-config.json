@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "cards": [
+    {
+      "id": "homecare",
+      "name": "移动看家",
+      "scene": "远程看护",
+      "icon": "video",
+      "colors": [
+        "#42bdb9",
+        "#178c9e"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "chess",
+      "name": "咪咕游戏",
+      "scene": "棋牌游戏",
+      "icon": "game",
+      "colors": [
+        "#a180e8",
+        "#7152c5"
+      ],
+      "enabled": true
+    },
+    {
+      "id": "douyin",
+      "name": "抖音",
+      "scene": "短视频娱乐",
+      "icon": "music",
+      "colors": [
+        "#d85f85",
+        "#9f3668"
+      ],
+      "enabled": true
+    }
+  ]
+}

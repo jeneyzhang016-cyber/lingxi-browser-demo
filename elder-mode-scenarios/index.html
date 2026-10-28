@@ -35,7 +35,8 @@ let scenes=[
 {id:'chess',name:'咪咕游戏',scene:'玩棋牌',icon:'game',colors:['#a180e8','#7152c5']},
 {id:'douyin',name:'抖音',scene:'看视频',icon:'music',colors:['#d85f85','#9f3668']}];
 const $=id=>document.getElementById(id),svg=key=>`<svg viewBox="0 0 84 84" aria-hidden="true">${paths[key]}</svg>`,color=a=>`--c1:${a.colors[0]};--c2:${a.colors[1]}`;
-let installed=[];try{const saved=JSON.parse(localStorage.getItem('lingxi-scenarios-installed-v2'));if(Array.isArray(saved))installed=[...new Set(saved)].filter(id=>scenes.some(a=>a.id===id))}catch{}
+// Demo installations last only until this page is refreshed or reopened.
+let installed=[];
 let page=0,job=null,timer=null,down=null,suppress=false,toastTimer;
 function resize(){$('screen').style.transform=`scale(${Math.min(innerWidth/1280,innerHeight/800)})`}addEventListener('resize',resize);resize();
 function toast(s){$('toast').textContent=s;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2000)}
@@ -45,7 +46,7 @@ function render(){page=Math.min(page,totalPages()-1);const list=page===0?catalog
 function renderDownload(){if(!job)return;const a=scenes.find(a=>a.id===job.id);$('download-icon').style.cssText=color(a);$('download-icon').innerHTML=appIcon(a);$('download-name').textContent=a.name;$('download-fill').style.width=job.progress+'%';$('download-progress').setAttribute('aria-valuenow',job.progress);$('download-message').textContent=job.phase==='error'?'网络未连接，请重试':job.phase==='install'?'下载完成，正在安装…':`正在下载… ${job.progress}%`;$('retry-download').hidden=job.phase!=='error';}
 function activate(a){if(installed.includes(a.id)){launch(a);return}if(job)return;job={id:a.id,progress:0,phase:'download'};$('download-page').hidden=false;$('home').inert=true;$('cancel-download').focus();startDownload(a)}
 function startDownload(a){job.phase='download';job.progress=0;renderDownload();if(navigator.onLine===false){job.phase='error';renderDownload();return}timer=setInterval(()=>{if(navigator.onLine===false){clearInterval(timer);job.phase='error';renderDownload();return}job.progress=Math.min(100,job.progress+10);if(job.progress===100){clearInterval(timer);job.phase='install';renderDownload();timer=setTimeout(()=>finish(a),800)}else renderDownload()},380)}
-function finish(a){installed=[...new Set([...installed,a.id])];try{localStorage.setItem('lingxi-scenarios-installed-v2',JSON.stringify(installed))}catch{}$('download-message').textContent='已添加到“我的应用”，加载中…';timer=setTimeout(()=>{job=null;timer=null;$('download-page').hidden=true;render();launch(a)},600)}
+function finish(a){installed=[...new Set([...installed,a.id])];$('download-message').textContent='已添加到“我的应用”，加载中…';timer=setTimeout(()=>{job=null;timer=null;$('download-page').hidden=true;render();launch(a)},600)}
 function cancel(){clearInterval(timer);clearTimeout(timer);job=null;timer=null;$('download-page').hidden=true;$('home').inert=false;render()}
 $('cancel-download').onclick=cancel;$('retry-download').onclick=()=>{if(job?.phase==='error')startDownload(scenes.find(a=>a.id===job.id))};
 function movePage(d){if(job)return;page=Math.max(0,Math.min(totalPages()-1,page+d));render()}$('prev').onclick=()=>movePage(-1);$('next').onclick=()=>movePage(1);$('page').onclick=()=>{page=(page+1)%totalPages();render()};
